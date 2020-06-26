@@ -19,12 +19,10 @@ const request = require("request");
       ref: ref
     }
 
-    const json = JSON.stringify(data);
-
     console.log(github);
     console.log(`Triggering ${event}`);
 
-    await request({ url: url, method: "POST", headers: { "Content-Type": "application/json"} }, json);
+    await request({ url: url, method: "POST", json: true, body: data });
     core.setOutput("result", true);
 
   } catch (error) {
