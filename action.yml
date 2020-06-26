@@ -1,0 +1,18 @@
+name: Bot deployment notifier
+description: Notify the deployment bot
+inputs:
+  event:
+    description: Name of event
+    required: true 
+  secret:
+    description: Webhook secret
+    required: true
+  url:
+    description: Webhook URL
+    required: true
+outputs:
+  result:
+    description: Indicates if call was successfull
+runs:
+  using: 'node12'
+  main: 'index.js'
