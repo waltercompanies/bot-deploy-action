@@ -13968,18 +13968,19 @@ const request = __webpack_require__(570);
   const sha = process.env.GITHUB_SHA;
   const repo = process.env.GITHUB_REPOSITORY;
   const ref = process.env.GITHUB_REF;
+  const messageReference = github.context.payload.message_reference;
 
   try {
+    console.log(JSON.stringify(github));
+
     const data = {
       secret: secret,
       event_type: event,
       sha: sha,
       repo: repo,
-      ref: ref
+      ref: ref,
+      message_reference: messageReference
     }
-
-    console.log(github);
-    console.log(`Triggering ${event}`);
 
     await request({ url: url, method: "POST", json: true, body: data });
     core.setOutput("result", true);
