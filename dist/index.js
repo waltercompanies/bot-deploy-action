@@ -13968,6 +13968,8 @@ const request = __webpack_require__(570);
   const url = process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : core.getInput("url");
   const commits = github.context.payload.commits;
 
+  console.log(JSON.stringify(github.context));
+
   let sha = process.env.GITHUB_SHA;
   let repo = process.env.GITHUB_REPOSITORY;
   let ref = process.env.GITHUB_REF;
