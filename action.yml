@@ -6,10 +6,10 @@ inputs:
     required: true 
   secret:
     description: Webhook secret
-    required: true
+    required: false
   url:
     description: Webhook URL
-    required: true
+    required: false
 outputs:
   result:
     description: Indicates if call was successfull
