@@ -17,10 +17,6 @@ const request = require("request");
   let actor = "";
   let messageReference = "";
 
-  console.log(JSON.stringify(clientPayload));
-  console.log("----");
-  console.log(JSON.stringify(github.context));
-
   if(clientPayload && clientPayload.sha) {
     sha = clientPayload.sha;
   }
