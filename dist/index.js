@@ -13976,6 +13976,10 @@ const request = __webpack_require__(570);
   let actor = "";
   let messageReference = "";
 
+  console.log(JSON.stringify(clientPayload));
+  console.log("----");
+  console.log(JSON.stringify(github.context));
+
   if(clientPayload && clientPayload.sha) {
     sha = clientPayload.sha;
   }
