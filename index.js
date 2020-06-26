@@ -25,10 +25,6 @@ const request = require("request");
     sha = clientPayload.sha;
   }
 
-  if(clientPayload && clientPayload.repo) {
-    repo = clientPayload.repo;
-  }
-
   if(clientPayload && clientPayload.ref) {
     ref = clientPayload.ref;
   }

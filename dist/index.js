@@ -13984,10 +13984,6 @@ const request = __webpack_require__(570);
     sha = clientPayload.sha;
   }
 
-  if(clientPayload && clientPayload.repo) {
-    repo = clientPayload.repo;
-  }
-
   if(clientPayload && clientPayload.ref) {
     ref = clientPayload.ref;
   }
