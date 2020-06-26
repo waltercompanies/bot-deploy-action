@@ -9,11 +9,9 @@ const request = require("request");
   const sha = process.env.GITHUB_SHA;
   const repo = process.env.GITHUB_REPOSITORY;
   const ref = process.env.GITHUB_REF;
-  const messageReference = github.context.payload.message_reference;
+  const messageReference = github.context.payload.client_payload.message_reference;
 
   try {
-    console.log(JSON.stringify(github));
-
     const data = {
       secret: secret,
       event_type: event,
