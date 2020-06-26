@@ -13963,16 +13963,34 @@ const request = __webpack_require__(570);
 
 (async () => {
   const event = core.getInput("event");
+  const clientPayload = github.context.payload.client_payload;
   const secret = process.env.WEBHOOK_SECRET ? process.env.WEBHOOK_SECRET : core.getInput("secret");
   const url = process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : core.getInput("url");
-  const sha = process.env.GITHUB_SHA;
-  const repo = process.env.GITHUB_REPOSITORY;
-  const ref = process.env.GITHUB_REF;
-  const clientPayload = github.context.payload.client_payload;
-  const messageReference = clientPayloud ? clientPayload.message_reference : "";
   const commits = github.context.payload.commits;
-  let commitMessage = "", commitAuthor = "";
+
+  let sha = process.env.GITHUB_SHA;
+  let repo = process.env.GITHUB_REPOSITORY;
+  let ref = process.env.GITHUB_REF;
+  let commitMessage = "";
+  let commitAuthor = "";
   let actor = "";
+  let messageReference = "";
+
+  if(clientPayload && clientPayload.sha) {
+    sha = clientPayload.sha;
+  }
+
+  if(clientPayload && clientPayload.repo) {
+    repo = clientPayload.repo;
+  }
+
+  if(clientPayload && clientPayload.ref) {
+    ref = clientPayload.ref;
+  }
+
+  if(clientPayload && clientPayload.message_reference) {
+    messageReference = clientPayload.message_reference;
+  }
 
   if (clientPayload && clientPayload.commit_message) {
     commitMessage = clientPayload.commit_message;
