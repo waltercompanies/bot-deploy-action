@@ -13968,8 +13968,6 @@ const request = __webpack_require__(570);
   const url = process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : core.getInput("url");
   const commits = github.context.payload.commits;
 
-  console.log(JSON.stringify(github.context));
-
   let sha = process.env.GITHUB_SHA;
   let repo = process.env.GITHUB_REPOSITORY;
   let ref = process.env.GITHUB_REF;
@@ -13996,13 +13994,13 @@ const request = __webpack_require__(570);
 
   if (clientPayload && clientPayload.commit_message) {
     commitMessage = clientPayload.commit_message;
-  } else if (commits.length > 0) {
+  } else if (commits && commits.length > 0) {
     commitMessage = commits[0].message;
   }
 
   if (clientPayload && clientPayload.commit_author) {
     commitAuthor = clientPayload.commit_author;
-  } else if (commits.length > 0) {
+  } else if (commits && commits.length > 0) {
     commitAuthor = commits[0].author.name;
   }
 
