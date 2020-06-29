@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/waltercompanies/bot-deploy-action.git"
@@ -17,9 +14,13 @@
     "url": "https://github.com/waltercompanies/bot-deploy-action/issues"
   },
   "homepage": "https://github.com/waltercompanies/bot-deploy-action#readme",
+  "scripts": {
+    "build": "ncc build index.js"
+  },
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^3.0.0",
+    "@zeit/ncc": "^0.22.3",
     "request": "^2.88.2"
   }
 }
