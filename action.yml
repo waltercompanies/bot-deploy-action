@@ -3,12 +3,15 @@ description: Notify the deployment bot
 inputs:
   event:
     description: Name of event
-    required: true 
+    required: true
   secret:
     description: Webhook secret
     required: false
   url:
     description: Webhook URL
+    required: false
+  message:
+    description: Custom message
     required: false
 outputs:
   result:
