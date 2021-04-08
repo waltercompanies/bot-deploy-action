@@ -4,6 +4,7 @@ const request = require("request");
 
 (async () => {
   const event = core.getInput("event");
+  const message = core.getInput("message");
   const clientPayload = github.context.payload.client_payload;
   const secret = process.env.WEBHOOK_SECRET ? process.env.WEBHOOK_SECRET : core.getInput("secret");
   const url = process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : core.getInput("url");
@@ -55,7 +56,8 @@ const request = require("request");
       message_reference: messageReference,
       commit_message: commitMessage,
       commit_author: commitAuthor,
-      actor: actor
+      actor: actor,
+      message: message
     }
 
     await request({ url: url, method: "POST", json: true, body: data });
