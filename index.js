@@ -10,13 +10,6 @@ const request = require("request");
   const url = process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : core.getInput("url");
   const commits = github.context.payload.commits;
 
-  console.log("----------------------------------------------------------")
-  console.log("event", event);
-  console.log("message", message)
-  console.log("clientPayload", clientPayload)
-  console.log("commits", commits);
-  console.log("----------------------------------------------------------")
-
   let sha = process.env.GITHUB_SHA;
   let repo = process.env.GITHUB_REPOSITORY;
   let ref = process.env.GITHUB_REF;
@@ -40,13 +33,13 @@ const request = require("request");
   if (clientPayload && clientPayload.commit_message) {
     commitMessage = clientPayload.commit_message;
   } else if (commits && commits.length > 0) {
-    commitMessage = commits[0].message;
+    commitMessage = commits.slice(-1)[0].message;
   }
 
   if (clientPayload && clientPayload.commit_author) {
     commitAuthor = clientPayload.commit_author;
   } else if (commits && commits.length > 0) {
-    commitAuthor = commits[0].author.name;
+    commitAuthor = commits.slice(-1)[0].author.name;
   }
 
   if(clientPayload && clientPayload.actor) {
