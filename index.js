@@ -10,6 +10,13 @@ const request = require("request");
   const url = process.env.WEBHOOK_URL ? process.env.WEBHOOK_URL : core.getInput("url");
   const commits = github.context.payload.commits;
 
+  console.log("----------------------------------------------------------")
+  console.log("event", event);
+  console.log("message", message)
+  console.log("clientPayload", clientPayload)
+  console.log("commits", commits);
+  console.log("----------------------------------------------------------")
+
   let sha = process.env.GITHUB_SHA;
   let repo = process.env.GITHUB_REPOSITORY;
   let ref = process.env.GITHUB_REF;
