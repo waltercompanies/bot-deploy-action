@@ -18,9 +18,8 @@
     "build": "ncc build index.js"
   },
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^3.0.0",
-    "@zeit/ncc": "^0.22.3",
-    "request": "^2.88.2"
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0",
+    "@vercel/ncc": "^0.38.3"
   }
 }

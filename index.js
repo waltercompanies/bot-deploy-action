@@ -1,6 +1,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-const request = require("request");
+const https = require("https");
 
 (async () => {
   const event = core.getInput("event");
@@ -60,7 +60,30 @@ const request = require("request");
       message: message
     }
 
-    await request({ url: url, method: "POST", json: true, body: data });
+    const body = JSON.stringify(data);
+    const parsedUrl = new URL(url);
+
+    await new Promise((resolve, reject) => {
+      const req = https.request({
+        hostname: parsedUrl.hostname,
+        port: parsedUrl.port || 443,
+        path: parsedUrl.pathname + parsedUrl.search,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(body)
+        }
+      }, (res) => {
+        let responseData = "";
+        res.on("data", (chunk) => { responseData += chunk; });
+        res.on("end", () => { resolve(responseData); });
+      });
+
+      req.on("error", (err) => { reject(err); });
+      req.write(body);
+      req.end();
+    });
+
     core.setOutput("result", true);
 
   } catch (error) {
